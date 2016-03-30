@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package rfm;
+
+service FS {
+  rpc ReadDir (Request) returns (DirInfo) {}
+}
+
+message Request {
+  string base_dir = 1;
+  string target = 2;
+}
+
+message DirInfo {
+  string path = 1;
+  DiskUsage disk_usage = 2;
+  repeated FileInfo items = 3;
+}
+
+message DiskUsage {
+  uint64 size = 1;
+  uint64 free = 2;
+}
+
+message FileInfo {
+  string name = 1;
+  int64 size = 2;
+  uint32 mode = 3;
+  double mod_time = 4;
+  bool is_dir = 5;
+  string owner = 6;
+}
