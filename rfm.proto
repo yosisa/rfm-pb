@@ -4,11 +4,17 @@ package rfm;
 
 service FS {
   rpc ReadDir (Request) returns (DirInfo) {}
+  rpc Find (FindRequest) returns (DirInfo) {}
 }
 
 message Request {
   string base_dir = 1;
   string target = 2;
+}
+
+message FindRequest {
+  string base_dir = 1;
+  string name = 2;
 }
 
 message DirInfo {
